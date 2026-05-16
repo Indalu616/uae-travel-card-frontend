@@ -60,6 +60,11 @@ const NAV_ITEMS = [
     path: '/history',
     icon: <HistoryRoundedIcon />,
   },
+  {
+    label: 'Stations & Zones',
+    path: '/stations',
+    icon: <TrainRoundedIcon />,
+  },
 ];
 
 /**
