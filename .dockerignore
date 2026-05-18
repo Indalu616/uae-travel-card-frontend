@@ -1,7 +1,6 @@
 # Dependencies
 node_modules/
 .npm
-package-lock.json
 
 # Build directories
 dist/
@@ -30,6 +29,5 @@ pnpm-debug.log*
 # Docker config
 Dockerfile
 .dockerignore
-nginx.conf
 .github/
 README.md
