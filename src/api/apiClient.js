@@ -2,17 +2,15 @@ import axios from 'axios';
 
 /**
  * Central Axios instance for the UAE Travel Card System backend.
- * Base URL: http://localhost:8080
- *
- * The backend's CORS config whitelists http://localhost:3000 (our dev server port).
- * If you change the frontend port, update the backend's @CrossOrigin origins too.
+ * Default Production URL: https://uae-travel-card-system-service.onrender.com
+ * Custom overrides can be set using the environment variable VITE_API_BASE_URL.
  */
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://uae-travel-card-system-service.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10_000, // 10 s
+  timeout: 15_000, // 15s timeout to allow Render free tier time to spin up on cold start
 });
 
 /**
@@ -39,7 +37,7 @@ apiClient.interceptors.response.use(
     } else if (error.request) {
       // Request was made but no response received (backend down?)
       message =
-        'Cannot reach the backend. Make sure the Spring Boot server is running on port 8080.';
+        'Cannot reach the backend. Please check your network connection or verify the backend server is running.';
     } else {
       message = error.message;
     }
